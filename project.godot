@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Basement Dweller"
-run/main_scene="res://scenes/business_front.tscn"
+run/main_scene="res://scenes/Basement.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
