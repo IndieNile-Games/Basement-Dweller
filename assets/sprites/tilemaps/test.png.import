@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbww6j66bavar"
-path="res://.godot/imported/icon.png-fcba8a3700fb5af89c995132142de0f4.ctex"
+uid="uid://d1fawsqfnekp6"
+path="res://.godot/imported/test.png-daa1abb649e76983f3a1dd37b465d152.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/nklbdev.aseprite_importers/icon.png"
-dest_files=["res://.godot/imported/icon.png-fcba8a3700fb5af89c995132142de0f4.ctex"]
+source_file="res://assets/sprites/tilemaps/test.png"
+dest_files=["res://.godot/imported/test.png-daa1abb649e76983f3a1dd37b465d152.ctex"]
 
 [params]
 
