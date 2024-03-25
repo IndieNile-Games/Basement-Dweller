@@ -11,9 +11,23 @@ config_version=5
 [application]
 
 config/name="Basement Dweller"
+config/version="1.0.0"
 run/main_scene="res://scenes/Basement.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
+
+[aseprite_importers]
+
+aseprite_executable_path="D:/SteamLibrary/steamapps/common/Aseprite/Aseprite.exe"
+
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=272
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
 
 [editor]
 
@@ -23,3 +37,7 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/globalize-plugins/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
