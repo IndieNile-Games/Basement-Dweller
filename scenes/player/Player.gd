@@ -7,13 +7,13 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction_x = Input.get_axis("ui_left", "ui_right")
 	if direction_x:
-		velocity.x = direction_x * speed * delta * 10
+		velocity.x = direction_x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	var direction_y = Input.get_axis("ui_up", "ui_down")
 	if direction_y:
-		velocity.y = direction_y * speed * delta * 10
+		velocity.y = direction_y * speed
 	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 

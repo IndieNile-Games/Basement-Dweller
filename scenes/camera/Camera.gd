@@ -1,16 +1,15 @@
 extends Node2D
 
 @export var TargetNode: Node2D;
+@export var lerp_speed: float = 0.05;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_position(TargetNode.position);
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var old_pos: Vector2 = get_position();
-	
-	
-	set_position(TargetNode.get_position());
+	set_position(lerp(position, TargetNode.position, lerp_speed));
 	pass

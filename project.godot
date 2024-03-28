@@ -23,10 +23,11 @@ aseprite_executable_path="D:/SteamLibrary/steamapps/common/Aseprite/Aseprite.exe
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=272
-window/size/mode=2
-window/stretch/mode="canvas_items"
+window/size/viewport_width=384
+window/size/viewport_height=216
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
 [editor]
@@ -42,3 +43,5 @@ enabled=PackedStringArray("res://addons/globalize-plugins/plugin.cfg")
 
 textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
