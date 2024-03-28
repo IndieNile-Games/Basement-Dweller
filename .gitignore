@@ -1,3 +1,6 @@
+# VS Code Ignore
+.vscode/
+
 # Godot 4+ specific ignores
 .godot/
 
