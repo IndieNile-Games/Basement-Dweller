@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cqbbsqbmf234n"]
+
+[ext_resource type="Texture2D" uid="uid://d1fawsqfnekp6" path="res://assets/sprites/tilemaps/test.png" id="1_ewnu0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kg7s2"]
+resource_name = "Test Tiles"
+texture = ExtResource("1_ewnu0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_kg7s2")

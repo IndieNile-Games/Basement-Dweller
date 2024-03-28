@@ -25,7 +25,7 @@ func update_anim():
 		$AnimationTree["parameters/Sprint/blend_position"] = direction
 	
 	pass
-func _process(delta):
+func _process(_delta):
 	update_anim()
 
 func update_movement():
@@ -43,7 +43,7 @@ func update_movement():
 
 	move_and_slide()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	update_movement()
 	
 	pass
