@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed: int = 50
 @export var sprint_mult: float = 2
@@ -24,13 +25,10 @@ func update_anim():
 		$AnimationTree["parameters/Sprint/blend_position"] = direction
 	
 	pass
-
 func _process(delta):
 	update_anim()
 
-func _physics_process(delta):
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+func update_movement():
 	direction = Input.get_vector("ig_left", "ig_right", "ig_up", "ig_down").normalized()
 	sprinting = Input.is_action_pressed("ig_sprint")
 	
@@ -44,5 +42,8 @@ func _physics_process(delta):
 		velocity.y = move_toward(velocity.y, 0, speed)
 
 	move_and_slide()
+
+func _physics_process(delta):
+	update_movement()
 	
 	pass

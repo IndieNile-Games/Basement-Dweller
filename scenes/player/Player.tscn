@@ -1,10 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://cm0htpiplysif"]
+[gd_scene load_steps=38 format=3 uid="uid://cm0htpiplysif"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_lflv8"]
 [ext_resource type="Texture2D" uid="uid://dtqah4w2bauuq" path="res://assets/sprites/player/temp.png" id="2_l6hna"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2ykk"]
-size = Vector2(8, 2)
 
 [sub_resource type="Animation" id="Animation_n8jjx"]
 resource_name = "walk_right"
@@ -331,10 +328,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_lflv8")
 speed = 25
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 11)
-shape = SubResource("RectangleShape2D_r2ykk")
-
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-15, -18)
 scale = Vector2(0.31, 0.31)
@@ -342,7 +335,7 @@ texture = ExtResource("2_l6hna")
 centered = false
 hframes = 12
 vframes = 8
-frame = 6
+frame = 37
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 deterministic = false
@@ -365,3 +358,9 @@ root_node = NodePath("../PlayerSprite")
 libraries = {
 "": SubResource("AnimationLibrary_82lw5")
 }
+speed_scale = 0.6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -1.57499)
+scale = Vector2(1, 1.125)
+polygon = PackedVector2Array(-3, 9.4, -2, 12.0667, 3, 12.0667, 4, 9.4)

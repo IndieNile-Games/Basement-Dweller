@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/splash.png"
 config/icon="res://icon.svg"
-boot_splash/minimum_display_time=2000
+boot_splash/minimum_display_time=500
 
 [aseprite_importers]
 
@@ -34,6 +34,7 @@ window/stretch/aspect="keep_height"
 
 [editor]
 
+movie_writer/movie_file="E:/Programming/Repos/Indienile-Games/Basement-Dweller/bin/video_out.avi"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 

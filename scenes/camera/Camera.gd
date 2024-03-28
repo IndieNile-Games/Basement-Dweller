@@ -1,7 +1,8 @@
 extends Node2D
 
 @export var TargetNode: Node2D;
-@export var lerp_speed: float = 0.05;
+@export var BoundingNode: Node2D;
+@export var lerp_speed: float = 0.1;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
