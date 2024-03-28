@@ -34,6 +34,7 @@ sources/0 = SubResource("TileSetAtlasSource_kg7s2")
 [node name="Camera" parent="." node_paths=PackedStringArray("TargetNode") instance=ExtResource("2_hlaj8")]
 position = Vector2(-7, 4)
 TargetNode = NodePath("../Player")
+lerp_speed = 0.2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_qyp5o")
