@@ -4,8 +4,9 @@
 
 [node name="Camera" type="Node2D"]
 script = ExtResource("1_wqf6g")
+lerp_speed = 0.15
 
 [node name="Anchor" type="Marker2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="Anchor"]
-zoom = Vector2(1.25, 1.25)
+zoom = Vector2(2, 2)

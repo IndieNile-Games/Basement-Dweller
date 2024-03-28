@@ -1,20 +1,48 @@
 extends CharacterBody2D
 
-@export var speed: int = 200
+@export var speed: int = 50
+@export var sprint_mult: float = 2
+
+var direction: Vector2 = Vector2.ZERO
+var sprinting: bool = false
+
+func _ready():
+	$AnimationPlayer.play("idle_up")
+	
+	pass
+
+func update_anim():
+	$AnimationTree["parameters/conditions/is_idle"] = velocity == Vector2.ZERO
+	$AnimationTree["parameters/conditions/is_moving"] = velocity != Vector2.ZERO
+	
+	$AnimationTree["parameters/conditions/is_sprinting"] = sprinting
+	$AnimationTree["parameters/conditions/not_sprinting"] = !sprinting
+	
+	if (velocity != Vector2.ZERO):
+		$AnimationTree["parameters/Idle/blend_position"] = direction
+		$AnimationTree["parameters/Walk/blend_position"] = direction
+		$AnimationTree["parameters/Sprint/blend_position"] = direction
+	
+	pass
+
+func _process(delta):
+	update_anim()
 
 func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction_x = Input.get_axis("ui_left", "ui_right")
-	if direction_x:
-		velocity.x = direction_x * speed
+	direction = Input.get_vector("ig_left", "ig_right", "ig_up", "ig_down").normalized()
+	sprinting = Input.is_action_pressed("ig_sprint")
+	
+	if direction:
+		if sprinting:
+			velocity = direction * speed * sprint_mult
+		else:
+			velocity = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-		
-	var direction_y = Input.get_axis("ui_up", "ui_down")
-	if direction_y:
-		velocity.y = direction_y * speed
-	else:
 		velocity.y = move_toward(velocity.y, 0, speed)
 
 	move_and_slide()
+	
+	pass
