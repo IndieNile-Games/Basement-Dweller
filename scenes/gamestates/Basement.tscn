@@ -14,5 +14,5 @@ lerp_speed = 0.1
 [node name="SmallL" parent="." instance=ExtResource("2_7wdqt")]
 
 [node name="Player" parent="." instance=ExtResource("2_peuco")]
-position = Vector2(60, -25)
+position = Vector2(0, 47)
 speed = 50
