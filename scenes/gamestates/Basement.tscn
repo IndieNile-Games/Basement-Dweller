@@ -6,13 +6,14 @@
 
 [node name="Basement" type="Node2D"]
 
-[node name="Camera" parent="." node_paths=PackedStringArray("TargetNode") instance=ExtResource("2_hlaj8")]
+[node name="Camera" parent="." node_paths=PackedStringArray("TargetNode", "BoundingTarget") instance=ExtResource("2_hlaj8")]
 position = Vector2(4, -44)
 TargetNode = NodePath("../SmallL/Player")
+BoundingTarget = NodePath("../SmallL")
 lerp_speed = 0.1
 
 [node name="SmallL" parent="." instance=ExtResource("2_7wdqt")]
 
 [node name="Player" parent="SmallL" instance=ExtResource("2_peuco")]
-position = Vector2(0, 47)
+position = Vector2(-8, 65)
 speed = 50
