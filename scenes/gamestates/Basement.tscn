@@ -8,11 +8,11 @@
 
 [node name="Camera" parent="." node_paths=PackedStringArray("TargetNode") instance=ExtResource("2_hlaj8")]
 position = Vector2(4, -44)
-TargetNode = NodePath("../Player")
+TargetNode = NodePath("../SmallL/Player")
 lerp_speed = 0.1
 
 [node name="SmallL" parent="." instance=ExtResource("2_7wdqt")]
 
-[node name="Player" parent="." instance=ExtResource("2_peuco")]
+[node name="Player" parent="SmallL" instance=ExtResource("2_peuco")]
 position = Vector2(0, 47)
 speed = 50

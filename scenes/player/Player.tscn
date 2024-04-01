@@ -325,17 +325,19 @@ states/Walk/position = Vector2(502, 62)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jk54p"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_opuon"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_6eguh"), "Walk", "Sprint", SubResource("AnimationNodeStateMachineTransition_v55mg"), "Sprint", "Walk", SubResource("AnimationNodeStateMachineTransition_v23hg"), "Sprint", "Idle", SubResource("AnimationNodeStateMachineTransition_n3auj")]
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_lflv8")
 speed = 25
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(-15, -18)
 scale = Vector2(0.31, 0.31)
 texture = ExtResource("2_l6hna")
 centered = false
 hframes = 12
 vframes = 8
-frame = 37
+frame = 1
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 deterministic = false
@@ -361,6 +363,6 @@ libraries = {
 speed_scale = 0.6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, -1.57499)
+position = Vector2(0, -5)
 scale = Vector2(1, 1.125)
 polygon = PackedVector2Array(-3, 9.4, -2, 12.0667, 3, 12.0667, 4, 9.4)
