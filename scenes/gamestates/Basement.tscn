@@ -21,6 +21,7 @@ position = Vector2(4, -44)
 TargetNode = NodePath("../Player")
 BoundingTarget = NodePath("../CurrentRoom/SmallCross")
 lerp_speed = 0.1
+camera_tile_border = -0.5
 
 [node name="Player" parent="." instance=ExtResource("2_peuco")]
 position = Vector2(-7, 80)
