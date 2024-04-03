@@ -361,5 +361,7 @@ terrain_set_0/terrain_0/name = "Room"
 terrain_set_0/terrain_0/color = Color(0.227451, 0.227451, 0.227451, 1)
 custom_data_layer_0/name = "interaction_type"
 custom_data_layer_0/type = 2
+custom_data_layer_1/name = "state"
+custom_data_layer_1/type = 2
 sources/0 = SubResource("TileSetAtlasSource_kg7s2")
 sources/1 = SubResource("TileSetAtlasSource_o3pyv")

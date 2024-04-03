@@ -8,10 +8,10 @@ var tile_rect: Rect2i;
 var tile_data: TileData;
 var start_found: bool = false;
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+func init_player_pos():
 	tile_rect = tilemap.get_used_rect()
 	
+	start_found = false;
 	for x in range(tile_rect.position.x, tile_rect.end.x):
 		for y in range(tile_rect.position.y, tile_rect.end.y):
 			# print(Vector2i(x,y))
@@ -23,6 +23,10 @@ func _ready():
 					start_found = true;
 					break;
 		if (start_found): break;
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	init_player_pos()
 	
 	pass # Replace with function body.
 
