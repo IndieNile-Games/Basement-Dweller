@@ -343,7 +343,7 @@ texture = ExtResource("2_l6hna")
 centered = false
 hframes = 12
 vframes = 8
-frame = 13
+frame = 37
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 deterministic = false
