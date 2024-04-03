@@ -1,19 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnskhqo1go7e3"]
+[gd_scene load_steps=5 format=3 uid="uid://cnskhqo1go7e3"]
 
-[ext_resource type="PackedScene" uid="uid://c5guunx3phulo" path="res://scenes/rooms/Small L.tscn" id="2_7wdqt"]
+[ext_resource type="Script" path="res://scenes/gamestates/CurrentRoom.gd" id="1_14ppf"]
+[ext_resource type="PackedScene" uid="uid://dr6l8j3tdeas7" path="res://scenes/rooms/Puzzle Loop.tscn" id="1_jxkaw"]
 [ext_resource type="PackedScene" uid="uid://di1wre2y2o4wr" path="res://scenes/camera/Camera.tscn" id="2_hlaj8"]
 [ext_resource type="PackedScene" uid="uid://cm0htpiplysif" path="res://scenes/player/Player.tscn" id="2_peuco"]
 
 [node name="Basement" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Small L Room" parent="." instance=ExtResource("2_7wdqt")]
-position = Vector2(1.30634, 5.90396)
+[node name="CurrentRoom" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+y_sort_enabled = true
+script = ExtResource("1_14ppf")
+player = NodePath("../Player")
+
+[node name="SmallCross" parent="CurrentRoom" instance=ExtResource("1_jxkaw")]
+y_sort_enabled = true
 
 [node name="Camera" parent="." node_paths=PackedStringArray("TargetNode", "BoundingTarget") instance=ExtResource("2_hlaj8")]
 position = Vector2(4, -44)
 TargetNode = NodePath("../Player")
-BoundingTarget = NodePath("../Small L Room")
+BoundingTarget = NodePath("../CurrentRoom/SmallCross")
 lerp_speed = 0.1
 
 [node name="Player" parent="." instance=ExtResource("2_peuco")]
