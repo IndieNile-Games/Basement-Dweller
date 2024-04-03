@@ -5,15 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://cm0htpiplysif" path="res://scenes/player/Player.tscn" id="2_peuco"]
 
 [node name="Basement" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Small L Room" parent="." instance=ExtResource("2_7wdqt")]
+position = Vector2(1.30634, 5.90396)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("TargetNode", "BoundingTarget") instance=ExtResource("2_hlaj8")]
 position = Vector2(4, -44)
-TargetNode = NodePath("../SmallL/Player")
-BoundingTarget = NodePath("../SmallL")
+TargetNode = NodePath("../Player")
+BoundingTarget = NodePath("../Small L Room")
 lerp_speed = 0.1
 
-[node name="SmallL" parent="." instance=ExtResource("2_7wdqt")]
-
-[node name="Player" parent="SmallL" instance=ExtResource("2_peuco")]
-position = Vector2(-8, 65)
+[node name="Player" parent="." instance=ExtResource("2_peuco")]
+position = Vector2(-7, 80)
 speed = 50
