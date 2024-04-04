@@ -12,15 +12,29 @@ var bounding_rect: Rect2;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(get_viewport_rect().size)
+	
 	set_position(TargetNode.position);
 	pass # Replace with function body.
 
 func update_bounds():
 	
-	CameraNode.limit_left = (BoundingTilemap.get_used_rect() .position.x - camera_tile_border) * BoundingTilemap.tile_set.tile_size[0]
-	CameraNode.limit_top = (BoundingTilemap.get_used_rect().position.y - camera_tile_border) * BoundingTilemap.tile_set.tile_size[1]
-	CameraNode.limit_right = (BoundingTilemap.get_used_rect().end.x + camera_tile_border) * BoundingTilemap.tile_set.tile_size[0]
-	CameraNode.limit_bottom = (BoundingTilemap.get_used_rect().end.y + camera_tile_border) * BoundingTilemap.tile_set.tile_size[1]
+	bounding_rect.position.x = (BoundingTilemap.get_used_rect() .position.x - camera_tile_border) * BoundingTilemap.tile_set.tile_size[0]
+	bounding_rect.position.y = (BoundingTilemap.get_used_rect().position.y - camera_tile_border) * BoundingTilemap.tile_set.tile_size[1]
+	bounding_rect.end.x = (BoundingTilemap.get_used_rect().end.x + camera_tile_border) * BoundingTilemap.tile_set.tile_size[0]
+	bounding_rect.end.y = (BoundingTilemap.get_used_rect().end.y + camera_tile_border) * BoundingTilemap.tile_set.tile_size[1]
+	
+	# if (get_viewport_rect().size.x > bounding_rect.size.x):
+	# 	bounding_rect.position.x = ((bounding_rect.position.x+(bounding_rect.size.x/2)) - (get_viewport_rect().size.x/2))/2
+	# 	bounding_rect.end.x = ((bounding_rect.position.x + get_viewport_rect().size.x)/3)-2
+	# if (get_viewport_rect().size.y > bounding_rect.size.y):
+	# 	bounding_rect.position.y = ((bounding_rect.position.y+(bounding_rect.size.y/2)) - (get_viewport_rect().size.y/2))/4
+	# 	bounding_rect.end.y = ((bounding_rect.position.y + get_viewport_rect().size.y)/3)-2
+	
+	CameraNode.limit_left = bounding_rect.position.x
+	CameraNode.limit_top = bounding_rect.position.y
+	CameraNode.limit_right = bounding_rect.end.x
+	CameraNode.limit_bottom = bounding_rect.end.y
 	
 	pass
 
