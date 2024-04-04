@@ -13,11 +13,11 @@ script = ExtResource("1_14ppf")
 player = NodePath("../Player")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("TargetNode") instance=ExtResource("2_hlaj8")]
-position = Vector2(4, -44)
+position = Vector2(1, 1)
 TargetNode = NodePath("../Player")
 lerp_speed = 0.1
 camera_tile_border = -0.5
 
 [node name="Player" parent="." instance=ExtResource("2_peuco")]
-position = Vector2(-7, 80)
+position = Vector2(1, 4)
 speed = 50
