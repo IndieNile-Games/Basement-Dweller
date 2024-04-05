@@ -19,7 +19,7 @@ func set_room(path: String):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_room("res://scenes/rooms/reg_rooms/Puzzle Loop Room.tscn")
+	set_room("res://scenes/rooms/other/Tutorial Room.tscn")
 	
 	init_player_pos()
 	

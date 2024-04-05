@@ -38,7 +38,6 @@ script = ExtResource("1_bcrx8")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3blfj")
 hframes = 5
-frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
