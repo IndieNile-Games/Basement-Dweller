@@ -333,6 +333,8 @@ size = Vector2(9.5, 3.55556)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_lflv8")
 speed = 25
 
@@ -343,7 +345,7 @@ texture = ExtResource("2_l6hna")
 centered = false
 hframes = 12
 vframes = 8
-frame = 37
+frame = 1
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 deterministic = false
@@ -368,7 +370,7 @@ libraries = {
 }
 speed_scale = 0.6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision Box" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 scale = Vector2(1, 1.125)
 shape = SubResource("RectangleShape2D_e077i")

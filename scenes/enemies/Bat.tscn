@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://hlprn1r30fy8"]
+
+[ext_resource type="Texture2D" uid="uid://cs8d5juyu1x0r" path="res://assets/sprites/enemies/bat.png" id="1_3blfj"]
+[ext_resource type="Script" path="res://scenes/enemies/Bat.gd" id="1_bcrx8"]
+
+[sub_resource type="Animation" id="Animation_6oxfr"]
+resource_name = "defualt"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cqlgy"]
+_data = {
+"default": SubResource("Animation_6oxfr")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iea7x"]
+radius = 9.05539
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vuvl"]
+radius = 33.0151
+
+[node name="Bat" type="CharacterBody2D"]
+z_index = 3
+script = ExtResource("1_bcrx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3blfj")
+hframes = 5
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cqlgy")
+}
+autoplay = "default"
+
+[node name="Collision Box" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iea7x")
+
+[node name="Targeting Box" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Targeting Box"]
+shape = SubResource("CircleShape2D_3vuvl")
+debug_color = Color(0.988235, 0, 0.309804, 0.419608)
+
+[connection signal="body_entered" from="Targeting Box" to="." method="_on_player_rect_body_entered"]
