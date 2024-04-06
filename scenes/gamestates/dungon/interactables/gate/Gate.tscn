@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfx646grr7e44"]
 
 [ext_resource type="TileSet" uid="uid://cqbbsqbmf234n" path="res://assets/sprites/tilemaps/tiles.tres" id="1_7fmsj"]
-[ext_resource type="Script" path="res://scenes/interactables/gate/Gate.gd" id="1_myvex"]
+[ext_resource type="Script" path="res://scenes/gamestates/dungon/interactables/gate/Gate.gd" id="1_myvex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxjry"]
 size = Vector2(16, 16)

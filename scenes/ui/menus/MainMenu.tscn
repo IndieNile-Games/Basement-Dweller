@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://5p6og6becyr0"]
 
-[ext_resource type="Script" path="res://scenes/menus/Button.gd" id="1_gvc2u"]
+[ext_resource type="Script" path="res://scenes/ui/menus/Button.gd" id="1_gvc2u"]
 
 [sub_resource type="SystemFont" id="SystemFont_dvhh8"]
 font_names = PackedStringArray("Serif")

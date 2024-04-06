@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var opening_scene: String;
 @export var player: Node2D;
 
 var room: PackedScene;
@@ -15,11 +16,11 @@ func set_room(path: String):
 	room_scene.y_sort_enabled = true;
 	add_child(room_scene)
 	get_parent().get_child(1).BoundingTarget = room_scene;
-	room_spawn = room_scene.get_child(1).get_child(0)
+	room_spawn = room_scene.get_node("Tile Map").get_node("POI").get_node("Spawn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_room("res://scenes/rooms/other_rooms/Tutorial Room.tscn")
+	set_room(opening_scene)
 	
 	init_player_pos()
 	

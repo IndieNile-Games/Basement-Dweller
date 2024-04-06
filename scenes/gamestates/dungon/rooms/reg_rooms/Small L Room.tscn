@@ -22,10 +22,10 @@ layer_3/name = "Air"
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 
-[node name="POI" type="Node2D" parent="."]
+[node name="POI" type="Node2D" parent="Tile Map"]
 
-[node name="Spawn" type="Marker2D" parent="POI"]
+[node name="Spawn" type="Marker2D" parent="Tile Map/POI"]
 position = Vector2(-7, 73)
 
-[node name="End" type="Marker2D" parent="POI"]
+[node name="End" type="Marker2D" parent="Tile Map/POI"]
 position = Vector2(121, -119)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://hlprn1r30fy8"]
 
 [ext_resource type="Texture2D" uid="uid://cs8d5juyu1x0r" path="res://assets/sprites/enemies/bat.png" id="1_3blfj"]
-[ext_resource type="Script" path="res://scenes/enemies/bat/Bat.gd" id="1_bcrx8"]
+[ext_resource type="Script" path="res://scenes/gamestates/dungon/enemies/bat/Bat.gd" id="1_bcrx8"]
 
 [sub_resource type="Animation" id="Animation_6oxfr"]
 resource_name = "defualt"
