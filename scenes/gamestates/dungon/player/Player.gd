@@ -3,6 +3,9 @@ class_name Player
 
 @export var speed: int = 50
 @export var sprint_mult: float = 2
+@export var max_health: int = 100;
+
+var health: int = max_health;
 
 var action_box_dist: int = 12;
 
@@ -69,6 +72,9 @@ func update_movement():
 
 func _physics_process(_delta):
 	update_movement()
+	
+	if (Input.is_action_just_pressed("ig_attack")):
+		$Weapons/Mop/AnimationPlayer.play("swing")
 	
 	pass
 
