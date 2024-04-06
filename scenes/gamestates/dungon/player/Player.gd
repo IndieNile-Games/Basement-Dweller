@@ -11,8 +11,12 @@ var action_box_dist: int = 12;
 
 var targeting_activatible: bool = false;
 var targeted_activatible;
+var hit_activatable: bool = false;
 
 var direction: Vector2 = Vector2.ZERO
+
+func attack():
+	$Weapons/Mop/AnimationPlayer.play("swing")
 
 func _ready():
 	$AnimationPlayer.play("idle_up")
@@ -65,8 +69,10 @@ func update_movement():
 
 	# move_activatorbox(direction)
 
-	if (Input.is_action_just_pressed("ig_activate") && targeting_activatible):
+	if (targeting_activatible && !hit_activatable):
+		hit_activatable = true
 		targeted_activatible.toggle(true)
+	
 
 	move_and_slide()
 
@@ -74,9 +80,7 @@ func _physics_process(_delta):
 	update_movement()
 	
 	if (Input.is_action_just_pressed("ig_attack")):
-		$Weapons/Mop/AnimationPlayer.play("swing")
-	
-	pass
+		attack()
 
 func _on_activator_box_body_entered(togglable):
 	targeted_activatible = togglable;
@@ -84,4 +88,5 @@ func _on_activator_box_body_entered(togglable):
 
 func _on_activator_box_body_exited(togglable):
 	targeted_activatible = null;
+	hit_activatable = false;
 	targeting_activatible = false;
