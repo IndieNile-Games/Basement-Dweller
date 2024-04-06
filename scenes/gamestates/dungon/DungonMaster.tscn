@@ -20,12 +20,8 @@ TargetNode = NodePath("../Player")
 lerp_speed = 0.1
 camera_tile_border = -0.5
 
+[node name="PlayerInfo" parent="Camera" instance=ExtResource("4_5n11w")]
+
 [node name="Player" parent="." instance=ExtResource("3_yj2hk")]
 position = Vector2(1, 4)
 speed = 50
-
-[node name="PlayerInfo" parent="Player" instance=ExtResource("4_5n11w")]
-offset_left = 333.0
-offset_top = 189.0
-offset_right = 333.0
-offset_bottom = 189.0

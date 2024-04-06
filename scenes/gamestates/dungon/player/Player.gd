@@ -60,7 +60,7 @@ func update_movement():
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.y = move_toward(velocity.y, 0, speed)
 
-	move_activatorbox(direction)
+	# move_activatorbox(direction)
 
 	if (Input.is_action_just_pressed("ig_activate") && targeting_activatible):
 		targeted_activatible.toggle(true)

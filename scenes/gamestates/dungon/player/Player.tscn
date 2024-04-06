@@ -332,7 +332,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 size = Vector2(9.5, 3.55556)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hf51v"]
-size = Vector2(9.5, 8)
+size = Vector2(13.75, 26)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -384,7 +384,7 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Activator Box"]
-position = Vector2(0, -12)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_hf51v")
 debug_color = Color(0, 0.647059, 0.235294, 0.419608)
 
