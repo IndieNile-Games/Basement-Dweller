@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cm0htpiplysif"]
+[gd_scene load_steps=41 format=3 uid="uid://cm0htpiplysif"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_lflv8"]
 [ext_resource type="Texture2D" uid="uid://dtqah4w2bauuq" path="res://assets/sprites/player/temp.png" id="2_l6hna"]
@@ -331,6 +331,9 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e077i"]
 size = Vector2(9.5, 3.55556)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf51v"]
+size = Vector2(9.5, 8)
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 7
@@ -375,3 +378,15 @@ position = Vector2(0, 1)
 scale = Vector2(1, 1.125)
 shape = SubResource("RectangleShape2D_e077i")
 one_way_collision_margin = 0.0
+
+[node name="Activator Box" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activator Box"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_hf51v")
+debug_color = Color(0, 0.647059, 0.235294, 0.419608)
+
+[connection signal="body_entered" from="Activator Box" to="." method="_on_activator_box_body_entered"]
+[connection signal="body_exited" from="Activator Box" to="." method="_on_activator_box_body_exited"]
