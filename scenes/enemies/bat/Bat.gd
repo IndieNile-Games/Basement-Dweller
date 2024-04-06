@@ -16,5 +16,5 @@ func _physics_process(_delta):
 func _on_player_rect_body_entered(body):
 	is_chasing = true;
 	target = body
-	get_child(2).set_deferred("disabled", true);
+	$"Room Collision Box".set_deferred("disabled", true);
 	

@@ -45,7 +45,7 @@ libraries = {
 }
 autoplay = "default"
 
-[node name="Collision Box" type="CollisionShape2D" parent="."]
+[node name="Room Collision Box" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iea7x")
 
 [node name="Targeting Box" type="Area2D" parent="."]

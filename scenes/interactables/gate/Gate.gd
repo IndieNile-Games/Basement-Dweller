@@ -9,12 +9,17 @@ func process_sprites():
 	else:
 		$Tiles.set_cell(0, Vector2i.ZERO, 2, Vector2i(2, 2))
 
-func _process(_delta):
-	process_sprites()
-
-func _change_state():
-	open = !open;
+func process_collision():
 	if (open):
 		$CollisionBox.set_deferred("disabled", true);
 	else:
 		$CollisionBox.set_deferred("disabled", false);
+
+func _ready():
+	process_collision()
+	process_sprites()
+
+func _change_state():
+	open = !open;
+	process_collision()
+	process_sprites()

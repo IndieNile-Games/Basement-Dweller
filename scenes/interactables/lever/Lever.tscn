@@ -4,8 +4,8 @@
 [ext_resource type="TileSet" uid="uid://cqbbsqbmf234n" path="res://assets/sprites/tilemaps/tiles.tres" id="2_3xfc5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_82rls"]
-radius = 5.0
-height = 14.0
+radius = 7.0
+height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmgxo"]
 radius = 21.0238
@@ -26,6 +26,7 @@ layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(0, 196610, 2)
 
 [node name="Actor Box" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_82rls")
 debug_color = Color(0, 0.643137, 0.282353, 0.419608)
 
