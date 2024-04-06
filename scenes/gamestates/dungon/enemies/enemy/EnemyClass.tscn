@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnsra5pi5dgm3"]
+
+[ext_resource type="Script" path="res://scenes/gamestates/dungon/enemies/enemy/EnemyClass.gd" id="1_y6yqj"]
+
+[node name="EnemyClass" type="CharacterBody2D"]
+script = ExtResource("1_y6yqj")
