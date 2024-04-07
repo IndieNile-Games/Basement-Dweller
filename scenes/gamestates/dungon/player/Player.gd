@@ -16,7 +16,7 @@ var hit_activatable: bool = false;
 var direction: Vector2 = Vector2.ZERO
 
 func attack():
-	$Weapons/Mop/AnimationPlayer.play("swing")
+	$Weapons/MopParent/Mop/AnimationPlayer.play("swing")
 
 func _ready():
 	$AnimationPlayer.play("idle_up")
