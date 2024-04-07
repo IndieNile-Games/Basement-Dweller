@@ -3,7 +3,7 @@ class_name Player
 
 @export var speed: int = 50
 @export var sprint_mult: float = 2
-@export var max_health: int = 100;
+@export var max_health: int = 5;
 
 var health: int = max_health;
 
@@ -36,6 +36,7 @@ func update_weapon():
 	$Weapons/MopParent.rotation = rotator.angle() - 67.5
 
 func attack():
+	$Audio/Attack.play()
 	$Weapons/MopParent/Mop/AnimationPlayer.play("swing")
 
 func _ready():

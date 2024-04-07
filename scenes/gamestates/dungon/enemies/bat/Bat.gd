@@ -20,7 +20,7 @@ var was_hit: bool = false;
 signal enemy_dead();
 
 func _ready():
-	$AnimationPlayer.play("default")
+	$AnimationPlayer.play("idle")
 	
 	if (link_code != -1):
 		for actionable in actionables_box.get_children():
@@ -33,7 +33,8 @@ func _physics_process(_delta):
 			player_direction = (target.get_global_position() - position).normalized() * speed
 			movement_direction = lerp(movement_direction, player_direction, 0.2)
 		else:
-			movement_direction = lerp(movement_direction, Vector2.ZERO, 0.07)
+			movement_direction = Vector2.ZERO
+			
 		
 		velocity = movement_direction;
 	else:
@@ -44,21 +45,26 @@ func _physics_process(_delta):
 func _on_player_rect_body_entered(body):
 	targeting = true;
 	target = body
+	$AnimationPlayer.play("default")
 	$"Room Collision Box".set_deferred("disabled", true);
 
 func process_hit():
-	$AnimationPlayer.play("damaged")
-	$HurtTimer.start()
 	health = health - 1
-	movement_direction = movement_direction * -1
-	was_hit = true;
 	
 	if (health <= 0):
+		health = 0
 		dead = true;
 		movement_direction = Vector2.ZERO
 		$AnimationPlayer.play("death")
 		$DeadTimer.start()
+		$Audio/Death.play()
 		emit_signal("enemy_dead")
+	else:
+		$AnimationPlayer.play("damaged")
+		$HurtTimer.start()
+		$Audio/Hurt.play()
+		movement_direction = movement_direction * -1
+		was_hit = true;
 
 func _on_hit_box_body_entered(body):
 	if (!was_hit && !dead):

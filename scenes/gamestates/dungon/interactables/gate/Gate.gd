@@ -21,5 +21,6 @@ func _ready():
 
 func _change_state():
 	open = !open;
+	$ToggleSound.play()
 	process_collision()
 	process_sprites()
