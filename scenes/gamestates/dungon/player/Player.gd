@@ -14,11 +14,27 @@ var targeted_activatible;
 var hit_activatable: bool = false;
 
 var direction: Vector2 = Vector2.ZERO
+var mouse_pos: Vector2 = (get_global_mouse_position() - global_position).normalized()
+var controller_pos: Vector2 = Input.get_vector("ig_wpleft", "ig_wpright", "ig_wpup", "ig_wpdown").normalized()
+const controller_deadzone: Vector2 = Vector2(0.5,0.5);
+
+func vector_pothag(vector: Vector2) -> float:
+	return sqrt(pow(vector.x, 2) + pow(vector.y, 2))
+
+func update_weapon():
+	mouse_pos = (get_global_mouse_position() - global_position).normalized()
+	controller_pos = Input.get_vector("ig_wpleft", "ig_wpright", "ig_wpup", "ig_wpdown").normalized()
+	
+	if (abs(vector_pothag(controller_pos)) > vector_pothag(controller_deadzone)): mouse_pos = controller_pos
+	
+	$Weapons/PointerParent.rotation = mouse_pos.angle() - 67.5
+	$Weapons/MopParent.rotation = mouse_pos.angle() - 67.5
 
 func attack():
 	$Weapons/MopParent/Mop/AnimationPlayer.play("swing")
 
 func _ready():
+	update_weapon()
 	$AnimationPlayer.play("idle_up")
 	
 	pass
@@ -39,22 +55,6 @@ func update_anim():
 func _process(_delta):
 	update_anim()
 
-func move_activatorbox(vector: Vector2):
-	$"Activator Box/CollisionShape2D".position.x = 0;
-	$"Activator Box/CollisionShape2D".position.y = -8;
-	if (vector.x < -0.5): 
-		$"Activator Box/CollisionShape2D".position.x = -action_box_dist;
-		$"Activator Box/CollisionShape2D".position.y = -8;
-	elif (vector.x > 0.5): 
-		$"Activator Box/CollisionShape2D".position.x = action_box_dist;
-		$"Activator Box/CollisionShape2D".position.y = -8;
-	if (vector.y < -0.5): 
-		$"Activator Box/CollisionShape2D".position.x = 0;
-		$"Activator Box/CollisionShape2D".position.y = -action_box_dist - 8;
-	elif (vector.y > 0.5): 
-		$"Activator Box/CollisionShape2D".position.x = 0;
-		$"Activator Box/CollisionShape2D".position.y = action_box_dist - 8;
-
 func update_movement():
 	direction = Input.get_vector("ig_left", "ig_right", "ig_up", "ig_down").normalized()
 	
@@ -73,6 +73,7 @@ func update_movement():
 		hit_activatable = true
 		targeted_activatible.toggle(true)
 	
+	update_weapon()
 
 	move_and_slide()
 
