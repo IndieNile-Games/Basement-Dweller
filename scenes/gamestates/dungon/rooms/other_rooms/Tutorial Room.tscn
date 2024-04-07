@@ -70,11 +70,6 @@ position = Vector2(-40, -584)
 open = true
 link_code = 1
 
-[node name="Gate8" parent="Tile Map/Interactables/Props" instance=ExtResource("2_xhjw6")]
-position = Vector2(-8, -376)
-open = true
-link_code = 2
-
 [node name="Actors" type="Node2D" parent="Tile Map/Interactables"]
 y_sort_enabled = true
 
@@ -92,7 +87,6 @@ y_sort_enabled = true
 [node name="Bat" parent="Tile Map/Enemies" instance=ExtResource("4_wt1gx")]
 y_sort_enabled = true
 position = Vector2(-8, -318)
-link_code = 2
 
 [node name="Bat2" parent="Tile Map/Enemies" instance=ExtResource("4_wt1gx")]
 position = Vector2(-72, -536)

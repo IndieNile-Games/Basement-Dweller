@@ -434,7 +434,6 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="Weapons/Mop"]
-position = Vector2(0.707106, -4.94975)
 texture = ExtResource("2_im0oe")
 hframes = 3
 frame = 1
@@ -442,7 +441,6 @@ frame = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapons/Mop"]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_77gkw")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Weapons/Mop"]
 libraries = {
@@ -457,6 +455,9 @@ collision_mask = 16
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_5f5b8")
 debug_color = Color(0.541176, 0.568627, 0, 0.419608)
+
+[node name="AttackTime" type="Timer" parent="Weapons/Mop"]
+wait_time = 0.25
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-15, -25)
