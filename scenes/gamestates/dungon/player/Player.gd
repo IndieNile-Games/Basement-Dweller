@@ -25,10 +25,15 @@ func update_weapon():
 	mouse_pos = (get_global_mouse_position() - global_position).normalized()
 	controller_pos = Input.get_vector("ig_wpleft", "ig_wpright", "ig_wpup", "ig_wpdown").normalized()
 	
-	if (abs(vector_pothag(controller_pos)) > vector_pothag(controller_deadzone)): mouse_pos = controller_pos
+	var rotator: Vector2;
 	
-	$Weapons/PointerParent.rotation = mouse_pos.angle() - 67.5
-	$Weapons/MopParent.rotation = mouse_pos.angle() - 67.5
+	if (abs(vector_pothag(controller_pos)) > vector_pothag(controller_deadzone)): 
+		rotator = controller_pos
+	else:
+		rotator = mouse_pos
+	
+	$Weapons/PointerParent.rotation = rotator.angle() - 67.5
+	$Weapons/MopParent.rotation = rotator.angle() - 67.5
 
 func attack():
 	$Weapons/MopParent/Mop/AnimationPlayer.play("swing")
