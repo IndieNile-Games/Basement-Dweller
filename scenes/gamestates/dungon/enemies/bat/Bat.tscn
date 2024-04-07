@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://hlprn1r30fy8"]
+[gd_scene load_steps=10 format=3 uid="uid://hlprn1r30fy8"]
 
 [ext_resource type="Texture2D" uid="uid://cs8d5juyu1x0r" path="res://assets/sprites/enemies/bat.png" id="1_3blfj"]
 [ext_resource type="Script" path="res://scenes/gamestates/dungon/enemies/bat/Bat.gd" id="1_bcrx8"]
@@ -37,9 +37,26 @@ tracks/0/keys = {
 "values": [5, 6]
 }
 
+[sub_resource type="Animation" id="Animation_pa4ry"]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cqlgy"]
 _data = {
 "damaged": SubResource("Animation_u2htp"),
+"death": SubResource("Animation_pa4ry"),
 "default": SubResource("Animation_6oxfr")
 }
 
@@ -47,7 +64,7 @@ _data = {
 radius = 9.05539
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vuvl"]
-radius = 33.0151
+radius = 58.0086
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klvit"]
 radius = 7.0
@@ -58,10 +75,9 @@ collision_mask = 4
 script = ExtResource("1_bcrx8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-y_sort_enabled = true
 texture = ExtResource("1_3blfj")
-hframes = 7
-frame = 1
+hframes = 12
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -90,7 +106,11 @@ debug_color = Color(1, 0.00392157, 0.0588235, 0.419608)
 
 [node name="HurtTimer" type="Timer" parent="."]
 
+[node name="DeadTimer" type="Timer" parent="."]
+wait_time = 0.6
+
 [connection signal="body_entered" from="Targeting Box" to="." method="_on_player_rect_body_entered"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="DeadTimer" to="." method="_on_dead_timer_timeout"]

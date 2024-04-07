@@ -3,10 +3,9 @@ extends CharacterBody2D
 @export var speed: int = 50;
 @export var link_code: int = -1;
 
-@export var max_health: int = 2;
-
 @onready var actionables_box: Node2D = get_parent().get_parent().get_node("Interactables").get_node("Props")
 
+@export var max_health: int = 2;
 var health: int = max_health;
 
 var targeting: bool = false;
@@ -16,6 +15,7 @@ var player_direction: Vector2;
 var movement_direction: Vector2;
 
 var was_hit: bool = false;
+@export var dead: bool = false;
 
 signal enemy_dead();
 
@@ -28,7 +28,7 @@ func _ready():
 				connect("enemy_dead", actionable._change_state)
 
 func _physics_process(_delta):
-	if (!was_hit):
+	if (!was_hit && !dead):
 		if (targeting):
 			player_direction = (target.get_global_position() - position).normalized() * speed
 			movement_direction = lerp(movement_direction, player_direction, 0.2)
@@ -46,13 +46,27 @@ func _on_player_rect_body_entered(body):
 	target = body
 	$"Room Collision Box".set_deferred("disabled", true);
 
+func process_hit():
+	$AnimationPlayer.play("damaged")
+	$HurtTimer.start()
+	health = health - 1
+	movement_direction = movement_direction * -1
+	was_hit = true;
+	
+	if (health <= 0):
+		dead = true;
+		movement_direction = Vector2.ZERO
+		$AnimationPlayer.play("death")
+		$DeadTimer.start()
+		emit_signal("enemy_dead")
+
 func _on_hit_box_body_entered(body):
-	if (!was_hit):
-		$AnimationPlayer.play("damaged")
-		$HurtTimer.start()
-		movement_direction = movement_direction * -1
-		was_hit = true;
+	if (!was_hit && !dead):
+		process_hit()
 
 func _on_hurt_timer_timeout():
-	$AnimationPlayer.play("default")
+	if (!dead): $AnimationPlayer.play("default")
 	was_hit = false;
+
+func _on_dead_timer_timeout():
+	queue_free()
