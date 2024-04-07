@@ -89,8 +89,8 @@ link_code = 1
 y_sort_enabled = true
 
 [node name="Bat" parent="Tile Map/Enemies" instance=ExtResource("4_wt1gx")]
-y_sort_enabled = true
 position = Vector2(-8, -318)
+link_code = 2
 
 [node name="Bat2" parent="Tile Map/Enemies" instance=ExtResource("4_wt1gx")]
 position = Vector2(-72, -536)
@@ -107,6 +107,7 @@ position = Vector2(-7, 88)
 position = Vector2(-6, -247)
 
 [node name="Others" type="Node2D" parent="Tile Map"]
+z_index = -1
 position = Vector2(-7, 8)
 
 [node name="TutorialArt1" type="Sprite2D" parent="Tile Map/Others"]
