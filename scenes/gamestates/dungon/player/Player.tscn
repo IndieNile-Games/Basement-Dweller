@@ -464,7 +464,6 @@ position = Vector2(1, -1)
 position = Vector2(0, -4)
 
 [node name="Pointer" type="Sprite2D" parent="Weapons/PointerParent"]
-visible = false
 position = Vector2(-1, 0)
 texture = ExtResource("3_1mtkf")
 offset = Vector2(0, -14)
@@ -474,6 +473,7 @@ y_sort_enabled = true
 position = Vector2(-1, -4)
 
 [node name="Mop" type="StaticBody2D" parent="Weapons/MopParent"]
+visible = false
 y_sort_enabled = true
 position = Vector2(0, -14)
 rotation = 0.436332
