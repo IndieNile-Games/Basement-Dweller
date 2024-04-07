@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdbl7kv3bj1sx"]
+
+[ext_resource type="Script" path="res://scenes/gamestates/dungon/other/FloorArt.gd" id="1_fwbl3"]
+
+[node name="FloorArt" type="Sprite2D"]
+z_index = -1
+script = ExtResource("1_fwbl3")
