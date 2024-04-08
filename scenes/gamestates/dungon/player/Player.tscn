@@ -109,6 +109,22 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5b8"]
 size = Vector2(14, 12)
 
+[sub_resource type="Animation" id="Animation_j4yor"]
+resource_name = "dead"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [23, 32, 23, 32, 23, 32]
+}
+
 [sub_resource type="Animation" id="Animation_kktqu"]
 resource_name = "hurt"
 length = 0.2
@@ -228,22 +244,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_j4yor"]
-resource_name = "dead"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [32]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_82lw5"]
@@ -463,8 +463,8 @@ height = 16.0
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 15
-collision_mask = 15
+collision_layer = 143
+collision_mask = 143
 script = ExtResource("1_lflv8")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -473,7 +473,7 @@ position = Vector2(-8, -12)
 texture = ExtResource("2_qp6fv")
 centered = false
 hframes = 33
-frame = 32
+frame = 2
 
 [node name="Weapons" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -580,7 +580,29 @@ stream = ExtResource("5_ssid4")
 [node name="InvulTimer" type="Timer" parent="."]
 wait_time = 0.6
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="HitBarTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 1)
+offset_left = -9.0
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 9.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 5.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
 [connection signal="body_entered" from="Weapons/MopParent/Mop/ActivatorBox" to="." method="_on_activator_box_body_entered"]
 [connection signal="body_exited" from="Weapons/MopParent/Mop/ActivatorBox" to="." method="_on_activator_box_body_exited"]
 [connection signal="body_entered" from="Hit Box" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="InvulTimer" to="." method="_on_invul_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="HitBarTimer" to="." method="_on_hit_bar_timer_timeout"]

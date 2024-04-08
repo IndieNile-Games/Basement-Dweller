@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk1nbqj6mojf6"
-path="res://.godot/imported/game_over.png-5467e5f9a6ddd7ad371fec738936095e.ctex"
+uid="uid://od6qv34mpfxk"
+path="res://.godot/imported/teleporter.png-c123dbbd766ddbcee25090957a7ef5d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tutorial/ui/game_over.png"
-dest_files=["res://.godot/imported/game_over.png-5467e5f9a6ddd7ad371fec738936095e.ctex"]
+source_file="res://assets/sprites/interactables/teleporter.png"
+dest_files=["res://.godot/imported/teleporter.png-c123dbbd766ddbcee25090957a7ef5d4.ctex"]
 
 [params]
 

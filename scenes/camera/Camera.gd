@@ -1,4 +1,5 @@
 extends Node2D
+class_name CustomCamera
 
 @export var TargetNode: Node2D;
 @export var BoundingTarget: Node2D;
@@ -9,6 +10,10 @@ var bounding_rect: Rect2;
 
 @onready var CameraNode: Camera2D = get_child(0).get_child(0)
 @onready var BoundingTilemap: TileMap = BoundingTarget.get_child(0)
+
+var temp_disable: bool = false;
+
+const INF_BOUNDS: Rect2i = Rect2(-10000000, -10000000, 20000000, 20000000);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,15 +36,21 @@ func update_bounds():
 	# 	bounding_rect.position.y = ((bounding_rect.position.y+(bounding_rect.size.y/2)) - (get_viewport_rect().size.y/2))/4
 	# 	bounding_rect.end.y = ((bounding_rect.position.y + get_viewport_rect().size.y)/3)-2
 	
-	CameraNode.limit_left = bounding_rect.position.x
-	CameraNode.limit_top = bounding_rect.position.y
-	CameraNode.limit_right = bounding_rect.end.x
-	CameraNode.limit_bottom = bounding_rect.end.y
+	if (!temp_disable): set_bounds(bounding_rect)
 	
 	pass
 
 func lerp_to_target():
 	set_position(lerp(position, TargetNode.position, lerp_speed));
+
+func set_bounds(rect: Rect2i):
+	CameraNode.limit_left = rect.position.x
+	CameraNode.limit_top = rect.position.y
+	CameraNode.limit_right = rect.end.x
+	CameraNode.limit_bottom = rect.end.y
+
+func toggle_disable(disable: bool):
+	temp_disable = disable;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://duta34ed1fe5k"]
+[gd_scene load_steps=8 format=3 uid="uid://duta34ed1fe5k"]
 
 [ext_resource type="TileSet" uid="uid://cqbbsqbmf234n" path="res://assets/sprites/tilemaps/tiles.tres" id="1_mi6dx"]
 [ext_resource type="PackedScene" uid="uid://cfx646grr7e44" path="res://scenes/gamestates/dungon/interactables/gate/Gate.tscn" id="2_xhjw6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cdbl7kv3bj1sx" path="res://scenes/gamestates/dungon/other/FloorArt.tscn" id="4_1l2xw"]
 [ext_resource type="PackedScene" uid="uid://hlprn1r30fy8" path="res://scenes/gamestates/dungon/enemies/bat/Bat.tscn" id="4_wt1gx"]
 [ext_resource type="Texture2D" uid="uid://bxqepioslgg7o" path="res://assets/sprites/tutorial/artwork.png" id="5_7lc0d"]
+[ext_resource type="PackedScene" uid="uid://cyrljvpxqe32x" path="res://scenes/gamestates/dungon/interactables/teleporter/Teleporter.tscn" id="5_wpf28"]
 
 [node name="Tutorial Room" type="Node2D"]
 y_sort_enabled = true
@@ -98,6 +99,16 @@ frame = 4
 link_code = 1
 switchable_frames = Array[int]([4, 6])
 
+[node name="Teleporter1" parent="Tile Map/Interactables/Props" node_paths=PackedStringArray("linked_teleporter") instance=ExtResource("5_wpf28")]
+position = Vector2(-8, -504)
+link_code = 2
+linked_teleporter = NodePath("../Teleporter2")
+
+[node name="Teleporter2" parent="Tile Map/Interactables/Props" node_paths=PackedStringArray("linked_teleporter") instance=ExtResource("5_wpf28")]
+position = Vector2(-8, -664)
+linked_teleporter = NodePath("../Teleporter1")
+type = 1
+
 [node name="Actors" type="Node2D" parent="Tile Map/Interactables"]
 y_sort_enabled = true
 
@@ -121,6 +132,7 @@ position = Vector2(-72, -536)
 
 [node name="Bat3" parent="Tile Map/Enemies" instance=ExtResource("4_wt1gx")]
 position = Vector2(57, -535)
+link_code = 2
 
 [node name="POI" type="Node2D" parent="Tile Map"]
 

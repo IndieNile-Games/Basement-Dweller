@@ -20,5 +20,6 @@ BoundingTarget = NodePath("../CurrentRoom")
 lerp_speed = 0.1
 camera_tile_border = -0.5
 
-[node name="Player" parent="." instance=ExtResource("3_yj2hk")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_yj2hk")]
 position = Vector2(1, 4)
+camera = NodePath("../Camera")

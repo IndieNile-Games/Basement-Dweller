@@ -4,10 +4,13 @@ class_name Player
 @export var speed: int = 50
 @export var sprint_mult: float = 2
 @export var max_health: int = 5;
+@export var camera: Node2D;
 
 var health: int = max_health;
 var was_hit: bool = false;
 var dead: bool = false;
+
+var money: int = 0;
 
 var action_box_dist: int = 12;
 
@@ -61,14 +64,15 @@ func update_anim():
 	
 	$AnimationTree["parameters/Moving/blend_position"] = direction
 	
-	$AnimationTree["parameters/conditions/is_moving"] = velocity != Vector2.ZERO
-	$AnimationTree["parameters/conditions/is_not_moving"] = velocity == Vector2.ZERO
+	$AnimationTree["parameters/conditions/is_moving"] = velocity != Vector2.ZERO && !dead
+	$AnimationTree["parameters/conditions/is_not_moving"] = velocity == Vector2.ZERO || dead
 	$AnimationTree["parameters/conditions/is_hit"] = was_hit
 	$AnimationTree["parameters/conditions/is_not_hit"] = !was_hit
 	$AnimationTree["parameters/conditions/is_dead"] = dead
 
 func _process(_delta):
 	update_anim()
+	update_health()
 
 func update_movement():
 	direction = Input.get_vector("ig_left", "ig_right", "ig_up", "ig_down").normalized()
@@ -113,8 +117,16 @@ func _on_activator_box_body_exited(_togglable):
 	hit_activatable = false;
 	targeting_activatible = false;
 
+func update_health():
+	$ProgressBar.value = health
+	if ((health == max_health || health == 0) || !just_hide_healthbar):
+		$ProgressBar.visible = false;
+	else:
+		$ProgressBar.visible = true;
+
 func reset():
 	health = max_health
+	camera.toggle_disable(false)
 	$"Collision Box".disabled = false;
 
 func process_damage():
@@ -122,11 +134,17 @@ func process_damage():
 	if (health <= 0):
 		health = 0
 		dead = true
+		camera.toggle_disable(true)
+		camera.set_bounds(camera.INF_BOUNDS)
 		$Weapons/PointerParent.visible = false;
 		$"Collision Box".disabled = true;
+		$DeathTimer.start()
+		get_parent().get_node("CurrentRoom").visible = false;
 	else:
 		was_hit = true;
+		just_hide_healthbar = true;
 		$InvulTimer.start()
+		$HitBarTimer.start()
 
 func _on_hit_box_body_entered(enemy):
 	if (!was_hit):
@@ -135,3 +153,11 @@ func _on_hit_box_body_entered(enemy):
 
 func _on_invul_timer_timeout():
 	was_hit = false
+
+var just_hide_healthbar: bool = false
+func _on_hit_bar_timer_timeout():
+	just_hide_healthbar = false
+
+func _on_death_timer_timeout():
+	print("Test")
+	get_tree().change_scene_to_file("res://scenes/ui/menus/Dead.tscn")
