@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ccjn8hl3mbtiq"]
+
+[ext_resource type="FontFile" uid="uid://dig6j053t008d" path="res://assets/fonts/ibm_bios.ttf" id="1_g53e0"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_g53e0")
+font_size = 8
+font_color = Color(0.431373, 1, 0.690196, 1)
