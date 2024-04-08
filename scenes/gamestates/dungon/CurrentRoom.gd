@@ -19,6 +19,7 @@ func set_room(path: String):
 	room_scene.y_sort_enabled = true;
 	add_child(room_scene)
 	get_parent().get_node("RoomTimer").reset()
+	get_parent().get_node("Music").get_node("Main").play()
 	get_parent().get_node("Camera").BoundingTarget = room_scene;
 	room_spawn = room_scene.get_node("Tile Map").get_node("POI").get_node("Spawn")
 	player.room_cleared.connect(next_room)

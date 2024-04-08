@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://di1wre2y2o4wr"]
+[gd_scene load_steps=2 format=3 uid="uid://di1wre2y2o4wr"]
 
 [ext_resource type="Script" path="res://scenes/camera/Camera.gd" id="1_wqf6g"]
-[ext_resource type="PackedScene" uid="uid://tb1k0x3e6xxe" path="res://scenes/ui/menus/Dead.tscn" id="2_ylm7f"]
-[ext_resource type="PackedScene" uid="uid://bvshd6qe2nndq" path="res://scenes/ui/menus/Victory.tscn" id="3_aw08i"]
 
 [node name="Camera" type="Node2D"]
 script = ExtResource("1_wqf6g")
@@ -12,8 +10,3 @@ lerp_speed = 0.15
 
 [node name="Camera2D" type="Camera2D" parent="Anchor"]
 zoom = Vector2(2, 2)
-
-[node name="Dead" parent="Anchor/Camera2D" instance=ExtResource("2_ylm7f")]
-visible = false
-
-[node name="Victory" parent="Anchor/Camera2D" instance=ExtResource("3_aw08i")]

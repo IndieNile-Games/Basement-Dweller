@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnskhqo1go7e3"]
+[gd_scene load_steps=6 format=3 uid="uid://cnskhqo1go7e3"]
 
 [ext_resource type="Script" path="res://scenes/gamestates/dungon/CurrentRoom.gd" id="1_k4dyq"]
 [ext_resource type="PackedScene" uid="uid://c8qs18uble1sb" path="res://scenes/other/RoomTimer.tscn" id="2_s84n4"]
 [ext_resource type="PackedScene" uid="uid://di1wre2y2o4wr" path="res://scenes/camera/Camera.tscn" id="2_xxm0t"]
 [ext_resource type="PackedScene" uid="uid://cm0htpiplysif" path="res://scenes/gamestates/dungon/player/Player.tscn" id="3_yj2hk"]
+[ext_resource type="AudioStream" uid="uid://vyvpejy1sdl0" path="res://assets/music/z3r0-8bitSyndrome.wav" id="5_rg2ck"]
 
 [node name="Basement" type="Node2D"]
 y_sort_enabled = true
@@ -26,3 +27,8 @@ camera_tile_border = -0.5
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_yj2hk")]
 position = Vector2(1, 4)
 camera = NodePath("../Camera")
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="Main" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("5_rg2ck")
