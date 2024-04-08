@@ -92,7 +92,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iea7x"]
-radius = 9.05539
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vuvl"]
 radius = 58.0086
@@ -101,15 +101,14 @@ radius = 58.0086
 radius = 7.0
 
 [node name="Bat" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_bcrx8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3blfj")
-offset = Vector2(3.54056, 0.368194)
 hframes = 12
-frame = 4
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -141,6 +140,8 @@ debug_color = Color(1, 0.00392157, 0.0588235, 0.419608)
 [node name="DeadTimer" type="Timer" parent="."]
 wait_time = 0.6
 
+[node name="AttackWaitTimer" type="Timer" parent="."]
+
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Audio"]
@@ -154,3 +155,4 @@ stream = ExtResource("4_32k3x")
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="DeadTimer" to="." method="_on_dead_timer_timeout"]
+[connection signal="timeout" from="AttackWaitTimer" to="." method="_on_attack_wait_timer_timeout"]

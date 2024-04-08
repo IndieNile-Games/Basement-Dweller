@@ -6,6 +6,8 @@ class_name Player
 @export var max_health: int = 5;
 
 var health: int = max_health;
+var was_hit: bool = false;
+var dead: bool = false;
 
 var action_box_dist: int = 12;
 
@@ -17,6 +19,12 @@ var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2 = (get_global_mouse_position() - global_position).normalized()
 var controller_pos: Vector2 = Input.get_vector("ig_wpleft", "ig_wpright", "ig_wpup", "ig_wpdown").normalized()
 const controller_deadzone: Vector2 = Vector2(0.5,0.5);
+
+enum FacingDirection {
+	LEFT, RIGHT
+}
+
+var last_direction: FacingDirection = FacingDirection.LEFT;
 
 func vector_pothag(vector: Vector2) -> float:
 	return sqrt(pow(vector.x, 2) + pow(vector.y, 2))
@@ -46,18 +54,19 @@ func _ready():
 	pass
 
 func update_anim():
-	$AnimationTree["parameters/conditions/is_idle"] = velocity == Vector2.ZERO
+	if (last_direction == FacingDirection.LEFT && direction != Vector2.ZERO):
+		$AnimationTree["parameters/Idle/blend_position"] = -1
+	elif (last_direction == FacingDirection.RIGHT && direction != Vector2.ZERO):
+		$AnimationTree["parameters/Idle/blend_position"] = 1
+	
+	$AnimationTree["parameters/Moving/blend_position"] = direction
+	
 	$AnimationTree["parameters/conditions/is_moving"] = velocity != Vector2.ZERO
-	
-	$AnimationTree["parameters/conditions/is_sprinting"] = Input.is_action_pressed("ig_sprint")
-	$AnimationTree["parameters/conditions/not_sprinting"] = !Input.is_action_pressed("ig_sprint")
-	
-	if (velocity != Vector2.ZERO):
-		$AnimationTree["parameters/Idle/blend_position"] = direction
-		$AnimationTree["parameters/Walk/blend_position"] = direction
-		$AnimationTree["parameters/Sprint/blend_position"] = direction
-	
-	pass
+	$AnimationTree["parameters/conditions/is_not_moving"] = velocity == Vector2.ZERO
+	$AnimationTree["parameters/conditions/is_hit"] = was_hit
+	$AnimationTree["parameters/conditions/is_not_hit"] = !was_hit
+	$AnimationTree["parameters/conditions/is_dead"] = dead
+
 func _process(_delta):
 	update_anim()
 
@@ -65,6 +74,11 @@ func update_movement():
 	direction = Input.get_vector("ig_left", "ig_right", "ig_up", "ig_down").normalized()
 	
 	if direction:
+		if (direction.x < 0):
+			last_direction = FacingDirection.LEFT
+		elif (direction.x > 0):
+			last_direction = FacingDirection.RIGHT
+		
 		if Input.is_action_pressed("ig_sprint"):
 			velocity = direction * speed * sprint_mult
 		else:
@@ -84,16 +98,40 @@ func update_movement():
 	move_and_slide()
 
 func _physics_process(_delta):
-	update_movement()
+	if (!dead):
+		update_movement()
 	
-	if (Input.is_action_just_pressed("ig_attack")):
-		attack()
+		if (Input.is_action_just_pressed("ig_attack")):
+			attack()
 
 func _on_activator_box_body_entered(togglable):
 	targeted_activatible = togglable;
 	targeting_activatible = true;
 
-func _on_activator_box_body_exited(togglable):
+func _on_activator_box_body_exited(_togglable):
 	targeted_activatible = null;
 	hit_activatable = false;
 	targeting_activatible = false;
+
+func reset():
+	health = max_health
+	$"Collision Box".disabled = false;
+
+func process_damage():
+	health = health - 1;
+	if (health <= 0):
+		health = 0
+		dead = true
+		$Weapons/PointerParent.visible = false;
+		$"Collision Box".disabled = true;
+	else:
+		was_hit = true;
+		$InvulTimer.start()
+
+func _on_hit_box_body_entered(enemy):
+	if (!was_hit):
+		enemy.attack_freeze()
+		process_damage()
+
+func _on_invul_timer_timeout():
+	was_hit = false

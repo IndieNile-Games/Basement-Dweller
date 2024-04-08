@@ -15,7 +15,7 @@ func set_room(path: String):
 	room_scene = room.instantiate()
 	room_scene.y_sort_enabled = true;
 	add_child(room_scene)
-	get_parent().get_child(1).BoundingTarget = room_scene;
+	get_parent().get_node("Camera").BoundingTarget = room_scene;
 	room_spawn = room_scene.get_node("Tile Map").get_node("POI").get_node("Spawn")
 
 # Called when the node enters the scene tree for the first time.
