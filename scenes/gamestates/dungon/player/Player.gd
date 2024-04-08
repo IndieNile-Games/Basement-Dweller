@@ -5,6 +5,7 @@ class_name Player
 @export var sprint_mult: float = 2
 @export var max_health: int = 5;
 @export var camera: Node2D;
+@export var ui_machine: CanvasLayer;
 
 var health: int = max_health;
 var was_hit: bool = false;
@@ -28,6 +29,8 @@ enum FacingDirection {
 }
 
 var last_direction: FacingDirection = FacingDirection.LEFT;
+
+signal room_cleared();
 
 func vector_pothag(vector: Vector2) -> float:
 	return sqrt(pow(vector.x, 2) + pow(vector.y, 2))
@@ -131,18 +134,20 @@ func reset():
 
 func process_damage():
 	health = health - 1;
-	if (health <= 0):
+	if (health <= 0 && !dead):
 		health = 0
 		dead = true
 		camera.toggle_disable(true)
 		camera.set_bounds(camera.INF_BOUNDS)
 		$Weapons/PointerParent.visible = false;
+		$Audio/Death.play()
 		$"Collision Box".disabled = true;
 		$DeathTimer.start()
 		get_parent().get_node("CurrentRoom").visible = false;
 	else:
 		was_hit = true;
 		just_hide_healthbar = true;
+		$Audio/Hurt.play()
 		$InvulTimer.start()
 		$HitBarTimer.start()
 

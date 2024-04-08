@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnskhqo1go7e3"]
+[gd_scene load_steps=5 format=3 uid="uid://cnskhqo1go7e3"]
 
 [ext_resource type="Script" path="res://scenes/gamestates/dungon/CurrentRoom.gd" id="1_k4dyq"]
+[ext_resource type="PackedScene" uid="uid://c8qs18uble1sb" path="res://scenes/other/RoomTimer.tscn" id="2_s84n4"]
 [ext_resource type="PackedScene" uid="uid://di1wre2y2o4wr" path="res://scenes/camera/Camera.tscn" id="2_xxm0t"]
 [ext_resource type="PackedScene" uid="uid://cm0htpiplysif" path="res://scenes/gamestates/dungon/player/Player.tscn" id="3_yj2hk"]
 
@@ -12,6 +13,8 @@ y_sort_enabled = true
 script = ExtResource("1_k4dyq")
 opening_scene = "res://scenes/gamestates/dungon/rooms/other_rooms/Tutorial Room.tscn"
 player = NodePath("../Player")
+
+[node name="RoomTimer" parent="." instance=ExtResource("2_s84n4")]
 
 [node name="Camera" parent="." node_paths=PackedStringArray("TargetNode", "BoundingTarget") instance=ExtResource("2_xxm0t")]
 position = Vector2(1, 1)
