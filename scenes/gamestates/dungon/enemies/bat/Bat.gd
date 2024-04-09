@@ -23,7 +23,7 @@ signal enemy_dead();
 
 func _ready():
 	$AnimationPlayer.play("idle")
-	
+	health = max_health
 	if (link_code != -1):
 		for actionable in actionables_box.get_children():
 			if (link_code == actionable.link_code):

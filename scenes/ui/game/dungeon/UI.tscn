@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdc2hrw6ukimb"]
+[gd_scene load_steps=4 format=3 uid="uid://bdc2hrw6ukimb"]
 
+[ext_resource type="Script" path="res://scenes/ui/game/dungeon/UI.gd" id="1_txqt8"]
 [ext_resource type="LabelSettings" uid="uid://ccjn8hl3mbtiq" path="res://assets/fonts/default.tres" id="1_u1w7m"]
+[ext_resource type="LabelSettings" uid="uid://bh6qigpgym1rq" path="res://assets/fonts/default_big.tres" id="3_rhqdt"]
 
 [node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_txqt8")
 
 [node name="GameUI" type="Control" parent="."]
 layout_mode = 3
@@ -26,15 +30,16 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
 [node name="StatList" type="VBoxContainer" parent="GameUI/PlayerStats"]
+z_index = 1
 layout_mode = 2
 
 [node name="TimeStat" type="HBoxContainer" parent="GameUI/PlayerStats/StatList"]
 layout_mode = 2
 
-[node name="TimeLable" type="Label" parent="GameUI/PlayerStats/StatList/TimeStat"]
+[node name="TimeLabel" type="Label" parent="GameUI/PlayerStats/StatList/TimeStat"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Time Elapsed:   MS"
+text = "Time Elapsed: "
 label_settings = ExtResource("1_u1w7m")
 
 [node name="PlayerTime" type="Label" parent="GameUI/PlayerStats/StatList/TimeStat"]
@@ -55,3 +60,127 @@ label_settings = ExtResource("1_u1w7m")
 layout_mode = 2
 text = "000"
 label_settings = ExtResource("1_u1w7m")
+
+[node name="PauseUI" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="PauseContainer" type="CenterContainer" parent="PauseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseItems" type="VBoxContainer" parent="PauseUI/PauseContainer"]
+layout_mode = 2
+
+[node name="PauseText" type="Label" parent="PauseUI/PauseContainer/PauseItems"]
+layout_mode = 2
+text = "You have DIED!"
+label_settings = ExtResource("3_rhqdt")
+horizontal_alignment = 1
+
+[node name="PauseButtons" type="HBoxContainer" parent="PauseUI/PauseContainer/PauseItems"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="PauseUI/PauseContainer/PauseItems/PauseButtons"]
+layout_mode = 2
+text = "Quit"
+
+[node name="ResumeButton" type="Button" parent="PauseUI/PauseContainer/PauseItems/PauseButtons"]
+layout_mode = 2
+text = "Retry"
+
+[node name="VictoryUI" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VictoryUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.529412)
+
+[node name="CenterContainer" type="CenterContainer" parent="VictoryUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryUI/CenterContainer"]
+layout_mode = 2
+
+[node name="CongratsText" type="Label" parent="VictoryUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONGRADULATIONS!"
+label_settings = ExtResource("3_rhqdt")
+
+[node name="StatList" type="VBoxContainer" parent="VictoryUI/CenterContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TimeStat" type="HBoxContainer" parent="VictoryUI/CenterContainer/VBoxContainer/StatList"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="VictoryUI/CenterContainer/VBoxContainer/StatList/TimeStat"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Time Elapsed: "
+label_settings = ExtResource("1_u1w7m")
+
+[node name="PlayerTime" type="Label" parent="VictoryUI/CenterContainer/VBoxContainer/StatList/TimeStat"]
+layout_mode = 2
+text = "000"
+label_settings = ExtResource("1_u1w7m")
+
+[node name="MoneyStat" type="HBoxContainer" parent="VictoryUI/CenterContainer/VBoxContainer/StatList"]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="VictoryUI/CenterContainer/VBoxContainer/StatList/MoneyStat"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Money Collected: $"
+label_settings = ExtResource("1_u1w7m")
+
+[node name="PlayerMoney" type="Label" parent="VictoryUI/CenterContainer/VBoxContainer/StatList/MoneyStat"]
+layout_mode = 2
+text = "000"
+label_settings = ExtResource("1_u1w7m")
+
+[node name="QuitReminder" type="Label" parent="VictoryUI/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Plress [esc] to Restart"
+label_settings = ExtResource("1_u1w7m")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PauseUI/PauseContainer/PauseItems/PauseButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PauseUI/PauseContainer/PauseItems/PauseButtons/ResumeButton" to="." method="_on_resume_button_pressed"]

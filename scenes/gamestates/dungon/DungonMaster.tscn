@@ -34,4 +34,6 @@ camera = NodePath("../Camera")
 [node name="Main" type="AudioStreamPlayer2D" parent="Music"]
 stream = ExtResource("5_rg2ck")
 
-[node name="UI" parent="." instance=ExtResource("6_v361h")]
+[node name="UI" parent="." node_paths=PackedStringArray("tracked_player", "tracked_timer") instance=ExtResource("6_v361h")]
+tracked_player = NodePath("../Player")
+tracked_timer = NodePath("../RoomTimer")

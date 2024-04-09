@@ -465,8 +465,8 @@ height = 16.0
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 143
-collision_mask = 143
+collision_layer = 911
+collision_mask = 911
 script = ExtResource("1_lflv8")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]

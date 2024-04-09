@@ -19,6 +19,8 @@ var targeting_activatible: bool = false;
 var targeted_activatible;
 var hit_activatable: bool = false;
 
+var game_end: bool = false;
+
 var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2 = (get_global_mouse_position() - global_position).normalized()
 var controller_pos: Vector2 = Input.get_vector("ig_wpleft", "ig_wpright", "ig_wpup", "ig_wpdown").normalized()
@@ -164,5 +166,7 @@ func _on_hit_bar_timer_timeout():
 	just_hide_healthbar = false
 
 func _on_death_timer_timeout():
-	print("Test")
 	get_tree().change_scene_to_file("res://scenes/ui/menus/Dead.tscn")
+
+func end_game():
+	game_end = true;
