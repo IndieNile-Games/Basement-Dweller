@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdc2hrw6ukimb"]
+[gd_scene load_steps=5 format=3 uid="uid://bdc2hrw6ukimb"]
 
 [ext_resource type="Script" path="res://scenes/ui/game/dungeon/UI.gd" id="1_txqt8"]
 [ext_resource type="LabelSettings" uid="uid://ccjn8hl3mbtiq" path="res://assets/fonts/default.tres" id="1_u1w7m"]
 [ext_resource type="LabelSettings" uid="uid://bh6qigpgym1rq" path="res://assets/fonts/default_big.tres" id="3_rhqdt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sd1ac"]
 
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
@@ -61,9 +63,8 @@ layout_mode = 2
 text = "000"
 label_settings = ExtResource("1_u1w7m")
 
-[node name="PauseUI" type="Control" parent="."]
+[node name="DeathUI" type="Control" parent="."]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,7 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="PauseUI"]
+[node name="ColorRect" type="ColorRect" parent="DeathUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.529412)
 
-[node name="PauseContainer" type="CenterContainer" parent="PauseUI"]
+[node name="PauseContainer" type="CenterContainer" parent="DeathUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,23 +89,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PauseItems" type="VBoxContainer" parent="PauseUI/PauseContainer"]
+[node name="PauseItems" type="VBoxContainer" parent="DeathUI/PauseContainer"]
 layout_mode = 2
 
-[node name="PauseText" type="Label" parent="PauseUI/PauseContainer/PauseItems"]
+[node name="PauseText" type="Label" parent="DeathUI/PauseContainer/PauseItems"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 text = "You have DIED!"
 label_settings = ExtResource("3_rhqdt")
 horizontal_alignment = 1
 
-[node name="PauseButtons" type="HBoxContainer" parent="PauseUI/PauseContainer/PauseItems"]
+[node name="AspectRatioContainer" type="HSeparator" parent="DeathUI/PauseContainer/PauseItems"]
+layout_mode = 2
+theme_override_constants/separation = 80
+theme_override_styles/separator = SubResource("StyleBoxEmpty_sd1ac")
+
+[node name="PauseButtons" type="HBoxContainer" parent="DeathUI/PauseContainer/PauseItems"]
 layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="PauseUI/PauseContainer/PauseItems/PauseButtons"]
+[node name="QuitButton" type="Button" parent="DeathUI/PauseContainer/PauseItems/PauseButtons"]
 layout_mode = 2
 text = "Quit"
 
-[node name="ResumeButton" type="Button" parent="PauseUI/PauseContainer/PauseItems/PauseButtons"]
+[node name="ResumeButton" type="Button" parent="DeathUI/PauseContainer/PauseItems/PauseButtons"]
 layout_mode = 2
 text = "Retry"
 
@@ -182,5 +190,5 @@ text = "Plress [esc] to Restart"
 label_settings = ExtResource("1_u1w7m")
 horizontal_alignment = 1
 
-[connection signal="pressed" from="PauseUI/PauseContainer/PauseItems/PauseButtons/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="PauseUI/PauseContainer/PauseItems/PauseButtons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="DeathUI/PauseContainer/PauseItems/PauseButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="DeathUI/PauseContainer/PauseItems/PauseButtons/ResumeButton" to="." method="_on_resume_button_pressed"]

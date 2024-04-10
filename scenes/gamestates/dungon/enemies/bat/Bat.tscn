@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://hlprn1r30fy8"]
+[gd_scene load_steps=14 format=3 uid="uid://hlprn1r30fy8"]
 
 [ext_resource type="Texture2D" uid="uid://cs8d5juyu1x0r" path="res://assets/sprites/enemies/bat.png" id="1_3blfj"]
 [ext_resource type="Script" path="res://scenes/gamestates/dungon/enemies/bat/Bat.gd" id="1_bcrx8"]
@@ -97,6 +97,9 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vuvl"]
 radius = 58.0086
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkrik"]
+radius = 20.025
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_klvit"]
 radius = 7.0
 
@@ -125,6 +128,11 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Targeting Box"]
 shape = SubResource("CircleShape2D_3vuvl")
+debug_color = Color(0.654902, 0.517647, 0, 0.419608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Targeting Box"]
+shape = SubResource("CircleShape2D_pkrik")
+disabled = true
 debug_color = Color(0.654902, 0.517647, 0, 0.419608)
 
 [node name="HitBox" type="Area2D" parent="."]

@@ -26,9 +26,9 @@ func _process(_delta):
 	update_animation()
 
 func _change_state():
-	print("Test")
 	is_active = !is_active
 
 func _on_body_entered(body):
 	if (type == Type.SENDER):
 		body.position = linked_teleporter.position;
+		$TeleportSound.play()

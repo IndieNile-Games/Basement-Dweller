@@ -27,4 +27,9 @@ func _process(delta):
 
 func _on_body_entered(player):
 	player.money += value
+	$CoinSound.play();
+	$CollisionShape2D.disabled = true;
+	visible = false
+
+func _on_coin_sound_finished():
 	queue_free()

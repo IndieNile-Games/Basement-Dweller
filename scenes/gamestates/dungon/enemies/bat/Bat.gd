@@ -1,7 +1,10 @@
 extends CharacterBody2D
+class_name Bat
 
 @export var speed: int = 50;
 @export var link_code: int = -1;
+
+@export var big: bool = false
 
 @onready var actionables_box: Node2D = get_parent().get_parent().get_node("Interactables").get_node("Props")
 
@@ -22,6 +25,9 @@ var was_hit: bool = false;
 signal enemy_dead();
 
 func _ready():
+	$"Targeting Box/CollisionShape2D2".disabled = !big
+	$"Targeting Box/CollisionShape2D".disabled = big
+	
 	$AnimationPlayer.play("idle")
 	health = max_health
 	if (link_code != -1):

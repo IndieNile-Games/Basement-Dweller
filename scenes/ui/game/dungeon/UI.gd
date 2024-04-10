@@ -22,15 +22,17 @@ func _process(_delta):
 	
 	if (tracked_player.game_end):
 		$GameUI.visible = false;
-		$PauseUI.visible = false;
+		$DeathUI.visible = false;
 		$VictoryUI.visible = true;
 		now_restart = true;
 		get_tree().paused = true;
 	
 	if (tracked_player.dead):
 		$GameUI.visible = false;
-		$PauseUI.visible = true;
+		$DeathUI.visible = true;
 		$VictoryUI.visible = false;
+	else:
+		$DeathUI.visible = false;
 	
 	if (Input.is_action_just_pressed("ig_pause")):
 		if (!now_restart): get_tree().quit()

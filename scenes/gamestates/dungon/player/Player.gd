@@ -23,7 +23,9 @@ var game_end: bool = false;
 
 var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2 = (get_global_mouse_position() - global_position).normalized()
+var last_mouse_pos: Vector2 = Vector2.ZERO;
 var controller_pos: Vector2 = Input.get_vector("ig_wpleft", "ig_wpright", "ig_wpup", "ig_wpdown").normalized()
+var controller_used = false;
 const controller_deadzone: Vector2 = Vector2(0.5,0.5);
 
 enum FacingDirection {
@@ -43,13 +45,19 @@ func update_weapon():
 	
 	var rotator: Vector2;
 	
-	if (abs(vector_pothag(controller_pos)) > vector_pothag(controller_deadzone)): 
+	if (last_mouse_pos != get_global_mouse_position()): controller_used = false;
+	if (abs(vector_pothag(controller_pos)) > vector_pothag(controller_deadzone)): controller_used = true;
+	
+	if (controller_used): 
+		
 		rotator = controller_pos
 	else:
 		rotator = mouse_pos
 	
 	$Weapons/PointerParent.rotation = rotator.angle() - 67.5
 	$Weapons/MopParent.rotation = rotator.angle() - 67.5
+	
+	last_mouse_pos = get_global_mouse_position()
 
 func attack():
 	$Audio/Attack.play()
@@ -146,7 +154,7 @@ func process_damage():
 		$"Collision Box".disabled = true;
 		$DeathTimer.start()
 		get_parent().get_node("CurrentRoom").visible = false;
-	else:
+	elif (!dead):
 		was_hit = true;
 		just_hide_healthbar = true;
 		$Audio/Hurt.play()
@@ -154,7 +162,7 @@ func process_damage():
 		$HitBarTimer.start()
 
 func _on_hit_box_body_entered(enemy):
-	if (!was_hit):
+	if (!was_hit && !enemy.dead):
 		enemy.attack_freeze()
 		process_damage()
 

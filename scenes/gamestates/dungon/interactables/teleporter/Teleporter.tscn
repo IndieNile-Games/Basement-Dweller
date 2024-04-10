@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyrljvpxqe32x"]
+[gd_scene load_steps=9 format=3 uid="uid://cyrljvpxqe32x"]
 
 [ext_resource type="Script" path="res://scenes/gamestates/dungon/interactables/teleporter/Teleporter.gd" id="1_r62cg"]
 [ext_resource type="Texture2D" uid="uid://od6qv34mpfxk" path="res://assets/sprites/interactables/teleporter.png" id="1_v2rxk"]
+[ext_resource type="AudioStream" uid="uid://mngtekt2u0c3" path="res://assets/sfx/teleport.wav" id="3_l68qx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p20bs"]
 radius = 5.0
@@ -86,5 +87,8 @@ libraries = {
 "": SubResource("AnimationLibrary_fx7hs")
 }
 autoplay = "off"
+
+[node name="TeleportSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_l68qx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
