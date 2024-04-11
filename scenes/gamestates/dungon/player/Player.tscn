@@ -475,7 +475,7 @@ position = Vector2(-8, -12)
 texture = ExtResource("2_qp6fv")
 centered = false
 hframes = 33
-frame = 5
+frame = 2
 
 [node name="Weapons" type="Node2D" parent="."]
 y_sort_enabled = true
